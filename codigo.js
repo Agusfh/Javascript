@@ -42,3 +42,16 @@ let precioFinal = calcularPrecioFinal(precioprod,ivaCalculado);
 
 alert ("El precio final del producto con iva incluido es $"+precioFinal);
 
+
+let masprod = prompt ("¿Te gustaría ver el precio final de otro producto? si/no");
+
+if (masprod == "si") || (masprod == "SI"){
+alert ("ngresá el precio del producto que deseas, para conocer su costo final con iva incluído. \nIngresá el precio del producto que prefieras: \n1 - Fernet $800 \n2 - Gancia $750 \n3 - Whisky $1300 \n4 - Vermut $600"");
+}
+
+else{
+    alert("Gracias por visitar CHIN CHIN BEBIDAS");
+
+
+si la respuesta es si... muestro menu 
+
