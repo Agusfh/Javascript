@@ -56,7 +56,6 @@ let masprod = prompt ("¿Te gustaría ver el precio final de otro producto: -si 
 
     //Array Products//
 
-
     const produc2= [
         "FERNET",
         "GANCIA",
