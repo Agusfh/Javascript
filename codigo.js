@@ -23,7 +23,7 @@ let precioprod = parseFloat (prompt ("A continuación podrás ingresar el precio
 function calcularIva(precio){
     return precio * 0.21;}
 
-ivaCalculado = calcularIva(precioprod);
+let ivaCalculado = calcularIva(precioprod);
 alert ("EL iva del producto es = $"+ivaCalculado);
 
 function calcularPrecioFinal(precio, iva){
