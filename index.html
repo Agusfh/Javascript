@@ -16,20 +16,20 @@
 
 <body>
 
-<header>
-    <div class="container logo">
 
-        <div class="row">
-            <div class="col-sm logo-first">
-                <img class="img-fluid logo-1" src="./images/logo.png">
-            </div>        
-        </div>
-    </div>
-</header>
-
-<nav>
 <!--hacer lista con las categorias de alcohol--> 
-
+<nav class="navbar navbar-inverse navbar-fixed-bottom" id="naveg">
+    <div class="container-fluid">
+      <div class="navbar-header col-sm-2 row">
+        <a class="navbar-brand" href="#"><img class="img-fluid logo-1" id="logo" src="./images/logo.png"></a>
+      </div>
+      <ul class="nav navbar-nav col-sm-10 row" id="lista">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Carrito</a></li>
+      </ul>
+    </div>
+  </nav> 
 </nav>
 
 <main class="container-fluid">
@@ -68,8 +68,14 @@
                 <!--inserto la tabla de carrito acumulado-->
             </tbody>
         </table>
-        
+
+        <div class="shop row">
+
+            <img class="icono" src="./images/cart1.png" width="70px" height="70px">
+
         <h3 id="total">Total a Pagar $: </h3>
+
+        </div>
     </div>
 </div>
 

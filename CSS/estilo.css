@@ -7,21 +7,63 @@
     box-sizing: border-box;
 }
 
-/*estilos header index*/
+/*estilos nav index*/
 
-header{
-    background-color: rgb(231, 219, 46);
-}
-
-.logo-1{
+.navbar-header{
     justify-content: left;
     image-orientation: left;
     margin: 10px;
     padding: 15px;
-    width: 20%;
+    width: 15%;
 }
 
+#naveg{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    background-color: rgb(231, 219, 46);
+    color: black;
+}
 
+#lista{
+    padding: 5px;
+    color: black;
+    letter-spacing: 2px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    
+}
+
+#chinchin{
+    margin: 10px;
+    padding: 15px;
+}
+
+/*estilos body*/
+
+h2{
+    padding: auto;
+    image-orientation: left;
+    margin: 25px;
+}
+
+.shop{
+    padding: auto;
+    image-orientation: left;
+    margin: 5px;
+}
+
+#total{
+    padding: auto;
+    image-orientation: left;
+    margin: 15px;
+}
+
+#tablabody{
+    background-color: rgb(231, 219, 46);
+}
 /*estilos footer index*/
 
 footer {
