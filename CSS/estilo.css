@@ -17,6 +17,11 @@
     width: 15%;
 }
 
+h1{
+    font-size: 40px;
+    font-style: oblique;
+}
+
 #naveg{
     display: flex;
     flex-direction: row;
@@ -41,12 +46,26 @@
     padding: 15px;
 }
 
+.dark{
+    background-color: black;
+    color: white;
+}
+
+.light{
+    background-color: white;
+    color: black;
+}
+
 /*estilos body*/
 
 h2{
     padding: auto;
     image-orientation: left;
     margin: 25px;
+}
+
+.card{
+    color: black;
 }
 
 .shop{
@@ -64,6 +83,22 @@ h2{
 #tablabody{
     background-color: rgb(231, 219, 46);
 }
+
+/*estilo boton dark light*/
+
+.botoncentro{
+    padding:5px;
+    margin:5px;
+    display: flex;
+    justify-content: center;
+}
+
+#secundario{
+    padding: 2px;
+    margin: 2px;
+}
+
+
 /*estilos footer index*/
 
 footer {
