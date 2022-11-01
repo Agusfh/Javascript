@@ -203,3 +203,8 @@ function mostrarPromo() {
     <h3> Estamos a fin de mes y se hace dificil, pero no te preocupes, te traemos las mejores promos para aprovechar! </h3>
 `;
     }
+
+    //usando JSON EN CARRITO
+
+    const carritocomp= JSON.parse(localStorage.getItem("carrito")) || []
+
