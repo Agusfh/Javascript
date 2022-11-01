@@ -13,7 +13,7 @@ const productos= [{
 
 {
     id:3,
-    foto: "./images/Cinzanooki.png",
+    foto: "./images/cinzanooki.png",
     nombre: "Vermut Cinzano",
     precio: 600
 },
