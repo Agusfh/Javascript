@@ -56,6 +56,10 @@ h1{
     color: black;
 }
 
+.swal2-styled.swal2-confirm{
+    background-color:rgb(231, 219, 46);
+}
+
 /*estilos body*/
 
 h2{

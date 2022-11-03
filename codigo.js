@@ -10,10 +10,24 @@ const vermut_price = 600;
 
 /*alert inicial*/
 
-let edad = prompt("Ingresa tu edad");
+let edad =  prompt("Ingresa tu edad");
 
 if (edad >= 18) {
-    alert("¡Bienvenido!" + " " + "\nBeber con moderación - Prohibida su venta a menores de 18 años");
+    //en vez de alert uso sweet alert
+    Swal.fire({
+        title: "¡Bienvenido!",
+        text: "Beber con moderación - Prohibida su venta a menores de 18 años",
+        width: 600,
+        padding: '3em',
+        color: 'rgb(231, 219, 46)',
+        background: '#fff url(/images/trees.png)',
+        backdrop: `
+        rgba(0,0,123,0.4)
+        url("/images/nyan-cat-nyan.gif")
+        left top
+        no-repeat
+        `
+    })
 
     /* alert de calculo iva y precio final */
 
@@ -89,8 +103,7 @@ else if (edad == "") {
 
 //cards y boton dinámico para carrito
 
-const carrito = [];
-
+let carrito = [];
 let contenedor = document.getElementById("misprods");
 
 function renderizarProds() {
@@ -123,7 +136,18 @@ renderizarProds();
 function agregarAlCarrito(productoAComprar) {
     carrito.push(productoAComprar);
     console.table(carrito);
-    alert("Producto: " + productoAComprar.nombre + " Agregado al Carrito!");
+    //alert("Producto: " + productoAComprar.nombre + " Agregado al Carrito!");
+    //sweet alert
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: productoAComprar.nombre,
+        background:"black",
+        color: "rgb(231, 219, 46)",
+        text: "Agregado al Carrito",
+        showConfirmButton: false,
+        timer: 2500
+    })
 
     //cuadro de carrito donde se van añadiendo los productos al html
 
@@ -134,11 +158,22 @@ function agregarAlCarrito(productoAComprar) {
     <td>${productoAComprar.precio}</td>
 </tr>
 `;
-
+//carrito y finalizar compra 
     let totalCarrito = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0);
     let infoTotal = document.getElementById("total");
     infoTotal.innerText = "Total a Pagar $: " + totalCarrito;
 }
+
+let botonFinalizar= document.getElementById("finalizar");
+
+botonFinalizar.onclick = () => {
+    carrito = [];
+    document.getElementById("tablabody").innerHTML="";
+    let infoTotal = document.getElementById("total");
+    infoTotal.innerText="Total a pagar $: ";
+    Swal.fire('Pronto recibirás el correo de confirmación con los pasos para realizar el pago!');
+}
+
 
 //DARK AND LIGHT MODE EN BODY
 
