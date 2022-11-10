@@ -10,7 +10,7 @@ const vermut_price = 600;
 
 /*alert inicial*/
 
-let edad =  prompt("Ingresa tu edad");
+let edad = prompt("Ingresa tu edad");
 
 if (edad >= 18) {
     //en vez de alert uso sweet alert
@@ -28,6 +28,7 @@ if (edad >= 18) {
         no-repeat
         `
     })
+
 
     /* alert de calculo iva y precio final */
 
@@ -95,15 +96,30 @@ if (edad >= 18) {
 
 //flujo edad
 else if (edad == "") {
-    alert("Por favor, ingresa tu edad");
+    Swal.fire({
+        text: "Por favor, ingresa tu edad",
+        icon: 'warning',
+        width: 600,
+        padding: '3em',
+        color: 'rgb(231, 219, 46)',
+        background: '#fff url(/images/trees.png)',
+    })
 } else {
-    alert("Eres menor de edad, por favor volve cuando tengas 18 años.");
+    Swal.fire({
+        title: "¡Lo sentimos!",
+        text: "Eres menor de edad, por favor volve cuando tengas 18 años.",
+        icon: 'warning',
+        width: 600,
+        padding: '3em',
+        color: 'rgb(231, 219, 46)',
+        background: '#fff url(/images/trees.png)',
+    })
 }
+
 
 
 //cards y boton dinámico para carrito
 
-let carrito = [];
 let contenedor = document.getElementById("misprods");
 
 function renderizarProds() {
@@ -112,10 +128,9 @@ function renderizarProds() {
             <div class="card col-sm-3" style="width: 18rem;">
                 <img src=${producto.foto} class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">${producto.id}</h5>
-                    <p class="card-text">${producto.nombre}</p>
+                    <h5 class="card-title">${producto.nombre}</h5>
                     <p class="card-text">$ ${producto.precio}</p>
-                    <button id="btn${producto.id}" class= "btn btn-primary">Comprar</button>
+                    <button id="btn${producto.id}" class= "btn btn-primary buy" >Comprar</button>
                 </div>
             </div>
         `;
@@ -143,7 +158,7 @@ function agregarAlCarrito(productoAComprar) {
         icon: 'success',
         title: productoAComprar.nombre,
         background:"black",
-        color: "rgb(231, 219, 46)",
+        color: "rgb(216, 167, 31)",
         text: "Agregado al Carrito",
         showConfirmButton: false,
         timer: 2500
@@ -164,7 +179,9 @@ function agregarAlCarrito(productoAComprar) {
     infoTotal.innerText = "Total a Pagar $: " + totalCarrito;
 }
 
-let botonFinalizar= document.getElementById("finalizar");
+let botonFinalizar = document.getElementById("finalizar");
+let carrito = [];
+
 
 botonFinalizar.onclick = () => {
     carrito = [];
@@ -174,6 +191,32 @@ botonFinalizar.onclick = () => {
     Swal.fire('Pronto recibirás el correo de confirmación con los pasos para realizar el pago!');
 }
 
+//registro
+
+let botonRegistro = document.getElementById ("registrarse");
+
+botonRegistro.onclick = () => {
+    Swal.fire({
+        title: 'Registrate',
+        html: `<input type="mail" id="login" class="swal2-input" placeholder="mail">
+        <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+        confirmButtonText: 'Ingresá',
+        focusConfirm: false,
+        preConfirm: () => {
+          const login = Swal.getPopup().querySelector('#login').value
+          const password = Swal.getPopup().querySelector('#password').value
+          if (!login || !password) {
+            Swal.showValidationMessage(`Ingresá tu mail y contraseña`)
+          }
+          return { login: login, password: password }
+        }
+      }).then((result) => {
+        Swal.fire(`
+          Mail: ${result.value.login}
+          Password: ${result.value.password}
+        `.trim())
+      })
+}
 
 //DARK AND LIGHT MODE EN BODY
 
@@ -216,12 +259,12 @@ boton.onclick = () => {
     //consultar si esta ok de esta forma para que la card me cambie de color tambien
 
     if (modo == "light") {
-        document.article.className = "dark";
+        document.contenedor.className = "dark";
         misprods.classList.remove("light");
         misprods.classList.add("dark");
         modo = "dark";
     } else {
-        document.article.className = "light";
+        document.contenedor.className = "light";
         misprods.classList.remove("dark");
         misprods.classList.add("light");
         modo = "light";
@@ -239,7 +282,5 @@ function mostrarPromo() {
 `;
     }
 
-    //usando JSON EN CARRITO
-
-    const carritocomp= JSON.parse(localStorage.getItem("carrito")) || []
+    
 
