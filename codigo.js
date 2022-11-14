@@ -191,6 +191,28 @@ botonFinalizar.onclick = () => {
     Swal.fire('Pronto recibirás el correo de confirmación con los pasos para realizar el pago!');
 }
 
+//Para eliminar productos del carrito
+function eliminar(ev){
+    console.log(ev);
+    let fila = ev.target.parentElement.parentElement;
+    console.log(fila);
+    let id = fila.children[0].innerText;
+    console.log(id);
+    let indice = carrito.findIndex(producto => producto.id == id);
+    console.log(indice)
+    //remueve el producto del carro
+    carrito.splice(indice,1);
+    console.table(carrito);
+    //remueve la fila de la tabla
+    fila.remove();
+    //recalcular el total
+    let preciosAcumulados = carrito.reduce((acumulador,producto)=>acumulador+producto.precio,0);
+    total.innerText="Total a pagar $: "+preciosAcumulados;
+    //storage
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+}
+
+
 //registro
 
 let botonRegistro = document.getElementById ("registrarse");

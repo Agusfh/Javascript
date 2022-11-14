@@ -25,7 +25,9 @@ h1{
 #registrarse {
     display: flex;
     background-color: black;
+    border-color: white;
     color: rgb(216, 167, 31);
+    margin-bottom: 25px;
 }
 
 p{
@@ -72,6 +74,39 @@ p{
     background-color:rgb(216, 167, 31)!important;
 }
 
+/*estilo boton dark light*/
+
+#principal{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(216, 167, 31);
+    margin-bottom: 25px;
+}
+
+
+/*estilos main*/
+
+.drink{
+    background-image: url("../images/banner.jpg");
+    padding: 55px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1300px;
+    justify-content: center;
+    background-repeat:repeat-x;
+}
+
+.tenelo{
+    display: flex;
+    text-decoration: wavy;
+    text-transform: capitalize;
+    text-shadow: 5px 5px 5px rgb(14, 12, 9);
+    justify-content:space-around;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    color: black;
+}
+
 /*estilos body*/
 
 h2{
@@ -106,19 +141,10 @@ h3{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/*estilo boton dark light*/
-
-.botoncentro{
-    padding:5px;
-    margin:5px;
-    display: flex;
+#misprods{
     justify-content: center;
 }
 
-#secundario{
-    padding: 2px;
-    margin: 2px;
-}
 
 /*carrito*/
 
