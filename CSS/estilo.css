@@ -91,9 +91,8 @@ p{
     padding: 55px;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 1300px;
     justify-content: center;
-    background-repeat:round;
+    background-repeat:unset;
 }
 
 .tenelo{
