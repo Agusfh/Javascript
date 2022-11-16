@@ -92,40 +92,15 @@ if (edad >= 18) {
 
     //dejo comentado los alert para que no se muestren
 
-}
 
-//flujo edad
-else if (edad == "") {
-    Swal.fire({
-        text: "Por favor, ingresa tu edad",
-        icon: 'warning',
-        width: 600,
-        padding: '3em',
-        color: 'rgb(231, 219, 46)',
-        background: '#fff url(/images/trees.png)',
-    })
-} else {
-    Swal.fire({
-        title: "¡Lo sentimos!",
-        text: "Eres menor de edad, por favor volve cuando tengas 18 años.",
-        icon: 'warning',
-        width: 600,
-        padding: '3em',
-        color: 'rgb(231, 219, 46)',
-        background: '#fff url(/images/trees.png)',
-    })
-}
-
-
-
-//cards y boton dinámico para carrito
+    //cards y boton dinámico para carrito
 
 let contenedor = document.getElementById("misprods");
 
 function renderizarProds() {
     for (const producto of productos) {
         contenedor.innerHTML += `
-            <div class="card col-sm-3" style="width: 18rem;">
+            <div id="card-color" class="card col-sm-3" style="width: 18rem;">
                 <img src=${producto.foto} class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${producto.nombre}</h5>
@@ -167,7 +142,7 @@ function agregarAlCarrito(productoAComprar) {
     //cuadro de carrito donde se van añadiendo los productos al html
 
     document.getElementById("tablabody").innerHTML += `
-<tr>
+<tr id= "finalcompra">
     <td>${productoAComprar.id}</td>
     <td>${productoAComprar.nombre}</td>
     <td>${productoAComprar.precio}</td>
@@ -188,7 +163,28 @@ botonFinalizar.onclick = () => {
     document.getElementById("tablabody").innerHTML="";
     let infoTotal = document.getElementById("total");
     infoTotal.innerText="Total a pagar $: ";
-    Swal.fire('Pronto recibirás el correo de confirmación con los pasos para realizar el pago!');
+    Swal.fire({
+        title: 'Datos para la entrega',
+        html: `<input type="text" id="nombre" class="swal2-input" placeholder="Nombre Completo">
+        <input type="text" id="domicilio" class="swal2-input" placeholder="Domicilio">
+        <input type="password" id="celular" class="swal2-input" placeholder="Celular">`,
+        confirmButtonText: 'Ok',
+        focusConfirm: false,
+        preConfirm: () => {
+            const nombre = Swal.getPopup().querySelector('#nombre').value
+          const domicilio = Swal.getPopup().querySelector('#domicilio').value
+          const celular = Swal.getPopup().querySelector('#celular').value
+          if (!domicilio || !celular || !nombre) {
+            Swal.showValidationMessage(`Por favor ingresa tus datos`)
+          }
+          return { nombre:nombre, domicilio: domicilio, celular: celular }
+        }
+      }).then((result) => {
+        Swal.fire(`
+            En los próximos minutos estarás recibiendo el correo de confirmación y seguimiento para la entrega.<br>
+            ¡Gracias por confiar en nosotros!
+        `.trim())
+      })      
 }
 
 //Para eliminar productos del carrito
@@ -300,9 +296,33 @@ fecha.getDate() > 25 && mostrarPromo();
 
 function mostrarPromo() {
     superpromo.innerHTML += `
-    <h3> Estamos a fin de mes y se hace dificil, pero no te preocupes, te traemos las mejores promos para aprovechar! </h3>
-`;
+    <h3 id= "promo"> Estamos a fin de mes y se hace dificil, asique te traemos las mejores promos para aprovechar!</h3>
+    <p id= "promo">20% OFF en toda la web con código de descuento "CHINCHIN"</p>`;  
     }
 
-    
+}
+
+//flujo edad
+else if (edad == "") {
+    Swal.fire({
+        text: "Por favor, ingresa tu edad",
+        icon: 'warning',
+        width: 600,
+        padding: '3em',
+        color: 'rgb(231, 219, 46)',
+        background: '#fff url(/images/trees.png)',
+    })
+} else {
+    Swal.fire({
+        title: "¡Lo sentimos!",
+        text: "Eres menor de edad, por favor volve cuando tengas 18 años.",
+        icon: 'warning',
+        width: 600,
+        padding: '3em',
+        color: 'rgb(231, 219, 46)',
+        background: '#fff url(/images/trees.png)',
+    })
+}
+
+
 

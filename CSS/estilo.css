@@ -9,17 +9,22 @@
 
 /*estilos nav index*/
 
-.navbar-header{
+.img-fluid{
     justify-content: left;
     image-orientation: left;
     margin: 10px;
-    padding: 15px;
-    width: 15%;
+    padding: 20px;
+    
 }
 
-h1{
-    font-size: 40px;
-    font-style: oblique;
+.titleok{
+    font-family: Fredoka One;
+    margin-top: 10px;
+    font-size: 60px;
+}
+
+.title-centro{
+    font-family: Fredoka One;
 }
 
 #registrarse {
@@ -31,8 +36,8 @@ h1{
 }
 
 p{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 15px;
+    font-family:Raleway;
+    font-size: 17px;
 }
 
 #naveg{
@@ -55,11 +60,6 @@ p{
     
 }
 
-#chinchin{
-    margin: 10px;
-    padding: 15px;
-}
-
 .dark{
     background-color: black;
     color: white;
@@ -74,6 +74,13 @@ p{
     background-color:rgb(216, 167, 31)!important;
 }
 
+#promo{
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    justify-content: center;
+}
+
 /*estilo boton dark light*/
 
 #principal{
@@ -81,29 +88,35 @@ p{
     justify-content: center;
     background-color: rgb(216, 167, 31);
     margin-bottom: 25px;
+    font-family:Raleway;
 }
 
 
 /*estilos main*/
 
 .drink{
-    background-image: url("../images/banner.jpg");
+    background-image: linear-gradient(rgba(241, 224, 66, 0.2), rgba(141, 89, 20, 0.9)), url("../images/banner.jpg");
     padding: 55px;
-    margin-top: 20px;
+/*margin-top: 20px;*/
     margin-bottom: 20px;
     justify-content: center;
-    background-repeat:unset;
+    background-repeat:repeat-x;
 }
 
 .tenelo{
     display: flex;
-    text-decoration: wavy;
-    text-transform: capitalize;
-    text-shadow: 5px 5px 5px rgb(14, 12, 9);
+    text-transform:uppercase;
+    text-shadow: 2px 2px 2px rgb(14, 12, 9);
     justify-content:space-around;
     text-overflow: ellipsis;
     font-weight: bold;
     color: black;
+    font-style: Raleway;
+    justify-content: center;
+}
+
+.title-centro{
+    font-family: Raleway;
 }
 
 /*estilos body*/
@@ -112,15 +125,19 @@ h2{
     padding: auto;
     image-orientation: left;
     margin: 25px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: Raleway;
+    text-align: left;
 }
 
 h3{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:Raleway;
 }
 
-.card{
-    color: rgb(216, 167, 31);;
+.table thead th{
+    color: rgb(216, 167, 31);
+    border-bottom: 4px solid #a8aaac;
+    border-top: 4px solid #a8aaac;
+    font-family:Raleway;
 }
 
 .shop{
@@ -148,7 +165,8 @@ h3{
 /*carrito*/
 
 #finalizar{
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    margin-top: 20px;
     background-color: rgb(216, 167, 31);
     border-color: black;
 }
@@ -174,6 +192,10 @@ h5{
     background-color: black;
 }
 
+::placeholder{
+    color: rgb(12, 11, 11)!important;
+}
+
 /*estilos footer index*/
 
 footer {
@@ -182,6 +204,7 @@ footer {
     font-size: 40px;
     padding: 20px;
     width: 100%;
+    display: flex;
 }
 
 footer p {
@@ -201,6 +224,10 @@ footer html {
     scroll-behavior: smooth;
 }
 
+.redes{
+    display: flex;
+    align-content:left;
+}
 
 footer .redes i {
     color: black;
@@ -213,10 +240,13 @@ footer .redes i:hover {
     color: white;
 }
 
-/*footer p::selection {
-    color: rgb(218, 45, 73);
-    background-color: black;
-}*/
+.pagos{
+    margin: 30px;
+}
+
+.mail{
+    margin: 30px;
+}
 
 footer .subir-container {
     position: fixed;
