@@ -1,3 +1,4 @@
+
 /*products*/
 
 const fernet_price = 800;
@@ -10,10 +11,18 @@ const vermut_price = 600;
 
 /*alert inicial*/
 
-let edad = prompt("Ingresa tu edad");
+/*let edad = prompt("Ingresa tu edad");*/
+
+let edad = undefined;
+
+if (!edad||!hayEdad){
+    edad = parseInt(prompt('ingresa tu edad'));
+    localStorage.setItem("edad", edad)
+}
+    const hayEdad = localStorage.getItem('edad')
 
 if (edad >= 18) {
-    //en vez de alert uso sweet alert
+    //sweet alert
     Swal.fire({
         title: "¡Bienvenido!",
         text: "Beber con moderación - Prohibida su venta a menores de 18 años",
@@ -95,10 +104,24 @@ if (edad >= 18) {
 
     //cards y boton dinámico para carrito
 
-let contenedor = document.getElementById("misprods");
+
+    let contenedor = document.getElementById("misprods");
+    let productosJSON = [];
+
+    obtenerJSON();
+
+    async function obtenerJSON() {
+        const URLJSON="productos.json";
+        const resp = await fetch(URLJSON);
+        const data = await resp.json();
+        productosJSON = data;
+    
+        console.log(productosJSON);
+        renderizarProds()
+        }
 
 function renderizarProds() {
-    for (const producto of productos) {
+    for (const producto of productosJSON) {
         contenedor.innerHTML += `
             <div id="card-color" class="card col-sm-3" style="width: 18rem;">
                 <img src=${producto.foto} class="card-img-top" alt="...">
@@ -113,7 +136,7 @@ function renderizarProds() {
 
     //eventos
 
-    productos.forEach(producto => {
+    productosJSON.forEach(producto => {
         //creo el evento para cada uno de los botones de producto
         document.getElementById(`btn${producto.id}`).addEventListener("click", function () {
             agregarAlCarrito(producto);
@@ -138,6 +161,10 @@ function agregarAlCarrito(productoAComprar) {
         showConfirmButton: false,
         timer: 2500
     })
+
+
+    //GETJSON de productos.json
+
 
     //cuadro de carrito donde se van añadiendo los productos al html
 
@@ -303,6 +330,7 @@ function mostrarPromo() {
 }
 
 //flujo edad
+
 else if (edad == "") {
     Swal.fire({
         text: "Por favor, ingresa tu edad",
@@ -311,7 +339,7 @@ else if (edad == "") {
         padding: '3em',
         color: 'rgb(231, 219, 46)',
         background: '#fff url(/images/trees.png)',
-    })
+    })//
 } else {
     Swal.fire({
         title: "¡Lo sentimos!",
@@ -323,6 +351,4 @@ else if (edad == "") {
         background: '#fff url(/images/trees.png)',
     })
 }
-
-
 

@@ -211,22 +211,23 @@ footer p {
     text-transform: capitalize;
     font-size: 20px;
     text-align: center;
-}
-
-footer .foot {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
-
 
 footer html {
     scroll-behavior: smooth;
 }
 
+.foot{
+    display: flex;
+    flex-direction: column;
+    align-items: center!important;
+    
+}
 .redes{
     display: flex;
-    align-content:left;
+    justify-content: center;
 }
 
 footer .redes i {
@@ -242,10 +243,12 @@ footer .redes i:hover {
 
 .pagos{
     margin: 30px;
+    display: flex;
 }
 
 .mail{
     margin: 30px;
+    display: flex;
 }
 
 footer .subir-container {
