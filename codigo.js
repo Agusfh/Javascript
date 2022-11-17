@@ -215,49 +215,7 @@ function eliminar(ev){
     localStorage.setItem("carrito",JSON.stringify(carrito));
 }
 
-//boton finalizar compra
-let botonFinalizar = document.getElementById("finalizar");
-
-
-botonFinalizar.onclick = () => {
-    if(carrito.length==0){
-        Swal.fire({
-            title: 'El carro está vacío',
-            text: 'Seleccioná algun producto',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    }else{
-    carrito = [];
-    document.getElementById("tablabody").innerHTML="";
-    let infoTotal = document.getElementById("total");
-    infoTotal.innerText="Total a pagar $: ";
-    Swal.fire({
-        title: 'Datos para la entrega',
-        html: `<input type="text" id="nombre" class="swal2-input" placeholder="Nombre Completo">
-        <input type="text" id="domicilio" class="swal2-input" placeholder="Domicilio">
-        <input type="text" id="celular" class="swal2-input" placeholder="Celular">`,
-        confirmButtonText: 'Ok',
-        focusConfirm: false,
-        preConfirm: () => {
-            const nombre = Swal.getPopup().querySelector('#nombre').value
-        const domicilio = Swal.getPopup().querySelector('#domicilio').value
-        const celular = Swal.getPopup().querySelector('#celular').value
-        if (!domicilio || !celular || !nombre) {
-            Swal.showValidationMessage(`Por favor ingresa tus datos`)
-        }
-        return { nombre:nombre, domicilio: domicilio, celular: celular }
-        }
-        }).then((result) => {
-        Swal.fire(`
-            En los próximos minutos estarás recibiendo el correo de confirmación y seguimiento para la entrega.<br>
-            ¡Gracias por confiar en nosotros!
-        `.trim())
-        })      
-}
-
-//registro
+//registro web
 
 let botonRegistro = document.getElementById ("registrarse");
 
@@ -292,7 +250,7 @@ let principal = document.getElementById("principal");
 
 let modo = localStorage.getItem("modo");
 
-//primer renderizado - cambio de color y guardado en storage
+//renderizado - cambio de color y guardado en storage
 
 if (modo != null) {
     document.body.className = modo;
@@ -321,21 +279,51 @@ boton.onclick = () => {
         modo = "light";
     }
     localStorage.setItem("modo", modo);
-
-    //consultar si esta ok de esta forma para que la card me cambie de color tambien
-
-    if (modo == "light") {
-        document.contenedor.className = "dark";
-        misprods.classList.remove("light");
-        misprods.classList.add("dark");
-        modo = "dark";
-    } else {
-        document.contenedor.className = "light";
-        misprods.classList.remove("dark");
-        misprods.classList.add("light");
-        modo = "light";
-    }
 }
+
+
+//boton finalizar compra
+let botonFinalizar = document.getElementById("finalizar");
+
+
+botonFinalizar.onclick = () => {
+    if(carrito.length==0){
+        Swal.fire({
+            title: 'El carro está vacío',
+            text: 'Seleccioná algun producto',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }else{
+    carrito = [];
+    document.getElementById("tablabody").innerHTML="";
+    let infoTotal = document.getElementById("total");
+    infoTotal.innerText="Total a pagar $: ";
+    Swal.fire({
+        title: 'Datos para la entrega',
+        html: `<input type="text" id="nombre" class="swal2-input" placeholder="Nombre Completo">
+        <input type="text" id="domicilio" class="swal2-input" placeholder="Domicilio">
+        <input type="text" id="celular" class="swal2-input" placeholder="Celular">`,
+        confirmButtonText: 'Ok',
+        focusConfirm: false,
+        preConfirm: () => {
+            const nombre = Swal.getPopup().querySelector('#nombre').value
+        const domicilio = Swal.getPopup().querySelector('#domicilio').value
+        const celular = Swal.getPopup().querySelector('#celular').value
+        if (!domicilio || !celular || !nombre) {
+            Swal.showValidationMessage(`Por favor ingresa tus datos`)
+        }
+        return {nombre:nombre, domicilio: domicilio, celular: celular}
+        }
+        }).then((result) => {
+        Swal.fire(`
+            En los próximos minutos estarás recibiendo el correo de confirmación y seguimiento para la entrega.<br>
+            ¡Gracias por confiar en nosotros!
+        `.trim())
+        })      
+}
+
 
 //operador avanzado - Aplico promoción por fecha 
 
