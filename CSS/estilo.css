@@ -192,6 +192,11 @@ h5{
     background-color: black;
 }
 
+#tacho{
+    background-color:rgb(216, 167, 31);
+    border: rgb(216, 167, 31);;
+}
+
 ::placeholder{
     color: rgb(12, 11, 11)!important;
 }

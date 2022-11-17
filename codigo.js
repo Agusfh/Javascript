@@ -104,21 +104,40 @@ if (edad >= 18) {
 
     //cards y boton dinámico para carrito
 
-
     let contenedor = document.getElementById("misprods");
     let productosJSON = [];
-
     obtenerJSON();
 
+    //productos.json
     async function obtenerJSON() {
         const URLJSON="productos.json";
         const resp = await fetch(URLJSON);
         const data = await resp.json();
         productosJSON = data;
-    
         console.log(productosJSON);
         renderizarProds()
         }
+
+    //recuperando carrito
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    (carrito.length != 0)&&muestraTabla();
+    
+    function muestraTabla(){
+        for(const producto of carrito){
+            document.getElementById("tablabody").innerHTML += `
+            <tr>
+                <td>${producto.id}</td>
+                <td>${producto.nombre}</td>
+                <td>${producto.precio}</td>
+                <td><button id= "tacho" class="btn btn-light" onclick="eliminar(event)">🗑️</button></td>
+            </tr>
+        `;
+        }
+        totalCarrito = carrito.reduce((acumulador,producto)=> acumulador + producto.precio,0);
+        let infoTotal = document.getElementById("total");
+        infoTotal.innerText="Total a pagar $: "+totalCarrito;
+    }
 
 function renderizarProds() {
     for (const producto of productosJSON) {
@@ -163,9 +182,6 @@ function agregarAlCarrito(productoAComprar) {
     })
 
 
-    //GETJSON de productos.json
-
-
     //cuadro de carrito donde se van añadiendo los productos al html
 
     document.getElementById("tablabody").innerHTML += `
@@ -173,19 +189,46 @@ function agregarAlCarrito(productoAComprar) {
     <td>${productoAComprar.id}</td>
     <td>${productoAComprar.nombre}</td>
     <td>${productoAComprar.precio}</td>
+    <td><button id= "tacho" class="btn btn-light" onclick="eliminar(event)">🗑️</button></td>
 </tr>
 `;
 //carrito y finalizar compra 
     let totalCarrito = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0);
     let infoTotal = document.getElementById("total");
     infoTotal.innerText = "Total a Pagar $: " + totalCarrito;
+    //storage
+    localStorage.setItem("carrito",JSON.stringify(carrito));
 }
 
+
+//Para eliminar productos del carrito
+function eliminar(ev){
+
+    let fila = ev.target.parentElement.parentElement;
+    let id = fila.children[0].innerText;
+    let indice = carrito.findIndex(producto => producto.id == id);
+    carrito.splice(indice,1);
+    console.table(carrito);
+    fila.remove();
+    let preciosAcumulados = carrito.reduce((acumulador,producto)=>acumulador+producto.precio,0);
+    total.innerText="Total a pagar $: "+preciosAcumulados;
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+}
+
+//boton finalizar compra
 let botonFinalizar = document.getElementById("finalizar");
-let carrito = [];
 
 
 botonFinalizar.onclick = () => {
+    if(carrito.length==0){
+        Swal.fire({
+            title: 'El carro está vacío',
+            text: 'Seleccioná algun producto',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }else{
     carrito = [];
     document.getElementById("tablabody").innerHTML="";
     let infoTotal = document.getElementById("total");
@@ -199,42 +242,20 @@ botonFinalizar.onclick = () => {
         focusConfirm: false,
         preConfirm: () => {
             const nombre = Swal.getPopup().querySelector('#nombre').value
-          const domicilio = Swal.getPopup().querySelector('#domicilio').value
-          const celular = Swal.getPopup().querySelector('#celular').value
-          if (!domicilio || !celular || !nombre) {
+        const domicilio = Swal.getPopup().querySelector('#domicilio').value
+        const celular = Swal.getPopup().querySelector('#celular').value
+        if (!domicilio || !celular || !nombre) {
             Swal.showValidationMessage(`Por favor ingresa tus datos`)
-          }
-          return { nombre:nombre, domicilio: domicilio, celular: celular }
         }
-      }).then((result) => {
+        return { nombre:nombre, domicilio: domicilio, celular: celular }
+        }
+        }).then((result) => {
         Swal.fire(`
             En los próximos minutos estarás recibiendo el correo de confirmación y seguimiento para la entrega.<br>
             ¡Gracias por confiar en nosotros!
         `.trim())
-      })      
+        })      
 }
-
-//Para eliminar productos del carrito
-function eliminar(ev){
-    console.log(ev);
-    let fila = ev.target.parentElement.parentElement;
-    console.log(fila);
-    let id = fila.children[0].innerText;
-    console.log(id);
-    let indice = carrito.findIndex(producto => producto.id == id);
-    console.log(indice)
-    //remueve el producto del carro
-    carrito.splice(indice,1);
-    console.table(carrito);
-    //remueve la fila de la tabla
-    fila.remove();
-    //recalcular el total
-    let preciosAcumulados = carrito.reduce((acumulador,producto)=>acumulador+producto.precio,0);
-    total.innerText="Total a pagar $: "+preciosAcumulados;
-    //storage
-    localStorage.setItem("carrito",JSON.stringify(carrito));
-}
-
 
 //registro
 
@@ -327,6 +348,7 @@ function mostrarPromo() {
     <p id= "promo">20% OFF en toda la web con código de descuento "CHINCHIN"</p>`;  
     }
 
+}
 }
 
 //flujo edad
