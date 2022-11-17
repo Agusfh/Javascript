@@ -227,7 +227,7 @@ footer html {
 }
 .redes{
     display: flex;
-    justify-content: center;
+    justify-content:center;
 }
 
 footer .redes i {
