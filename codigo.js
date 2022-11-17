@@ -237,7 +237,7 @@ botonFinalizar.onclick = () => {
         title: 'Datos para la entrega',
         html: `<input type="text" id="nombre" class="swal2-input" placeholder="Nombre Completo">
         <input type="text" id="domicilio" class="swal2-input" placeholder="Domicilio">
-        <input type="password" id="celular" class="swal2-input" placeholder="Celular">`,
+        <input type="text" id="celular" class="swal2-input" placeholder="Celular">`,
         confirmButtonText: 'Ok',
         focusConfirm: false,
         preConfirm: () => {
