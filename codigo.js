@@ -13,15 +13,17 @@ const vermut_price = 600;
 
 /*let edad = prompt("Ingresa tu edad");*/
 
-let edad = undefined;
+let edad;
 
-if (!edad||!hayEdad){
-    edad = parseInt(prompt('ingresa tu edad'));
-    localStorage.setItem("edad", edad)
-}
     const hayEdad = localStorage.getItem('edad')
+    if (!edad && (!hayEdad || hayEdad === 'undefined')){
+        
+        edad = parseInt(prompt('ingresa tu edad'));
+        localStorage.setItem("edad", edad)
+    }
 
-if (edad >= 18) {
+    console.log(edad, hayEdad)
+if ((edad || hayEdad)>=18){
     //sweet alert
     Swal.fire({
         title: "¡Bienvenido!",
